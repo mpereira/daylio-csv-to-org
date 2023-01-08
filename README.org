@@ -10,7 +10,7 @@
    :CUSTOM_ID: usage
    :END:
 
-   For now =daylio-csv-to-org= requires Java and Leiningen to run. If others
+   For now =daylio-csv-to-org= requires [[https://www.java.com/en/download/help/download_options.html][Java]] and [[https://leiningen.org/][Leiningen]] to run. If others
    manifest interest I may publish static binaries for convenience.
 
    #+begin_src text
@@ -25,32 +25,80 @@
      -o     --org-output                            Path to the resulting Org file
    #+end_src
 
-   A command like the one below would convert the
-   =/Users/jdoe/daylio_export_2023_01_01.csv= Daylio CSV export into a
-   =/Users/jdoe/org/daylio.org= Org file.
+   Assuming a Daylio CSV export like the one below:
+
+   #+begin_src text
+   $ cat daylio_export.csv 
+   full_date,date,weekday,time,mood,activities,note_title,note
+   2023-01-08,8. Jan,Sunday,13:12,good,Sleep 8 hours | Read book | Meditated,,Got back to reading novels this afternoon. Meditated for 30 minutes and went to bed.
+   2023-01-07,7. Jan,Saturday,22:00,great,Sleep 8 hours | Friends | Walk 10k steps | Workout,,Met John and Mary at the gym. We lifted weights and then came back to my place for dinner.
+   2023-01-06,6. Jan,Friday,22:00,bad,Stress | Shoulder pain,,
+   #+end_src
+
+   The command below would convert it to an Org file, which can be visualized
+   with [[https://www.gnu.org/software/emacs/][Emacs]] on a computer, or [[https://plainorg.com/][Plain Org]] on an iPhone.
 
    #+begin_src bash
    lein run \
-        --daylio-csv-input "/Users/jdoe/daylio_export_2023_01_01.csv" \
-        --org-output "/Users/jdoe/org/daylio.org"
+        --daylio-csv-input daylio_export.csv  \
+        --org-output daylio.org
    #+end_src
 
-   Using [[https://pandoc.org/][Pandoc]], the Org file could then be converted to many other formats,
-   like HTML:
+   #+begin_src org
+   ,#+TITLE: Daylio
+
+   ,#+file_name: daylio_export.csv
+   ,#+last_modified: 2023-01-08T21:55:31.567Z
+
+   ,* [2023-01-08 Sun] Got back to reading novels this afternoon. Meditated for 30… :good:
+     :PROPERTIES:
+     :CREATED:  [2023-01-08 Sun 13:12]
+     :END:
+
+     - Sleep 8 hours
+     - Read book
+     - Meditated
+
+     Got back to reading novels this afternoon. Meditated for 30 minutes and went to
+     bed.
+   ,* [2023-01-07 Sat] Met John and Mary at the gym. We lifted weights and then ca… :great:
+     :PROPERTIES:
+     :CREATED:  [2023-01-07 Sat 22:00]
+     :END:
+
+     - Sleep 8 hours
+     - Friends
+     - Walk 10k steps
+     - Workout
+
+     Met John and Mary at the gym. We lifted weights and then came back to my place
+     for dinner.
+   ,* [2023-01-06 Fri] <empty note> :bad:
+     :PROPERTIES:
+     :CREATED:  [2023-01-06 Fri 22:00]
+     :END:
+
+     - Stress
+     - Shoulder pain
+   #+end_src
+
+   Using [[https://pandoc.org/][Pandoc]], the Org file could be converted to many other formats, like
+   HTML, and visualized pretty much anywhere.
 
    #+begin_src bash
    pandoc \
      -f org \
      -t html \
      -o daylio.html \
-     "/Users/jdoe/org/daylio.org"
+     daylio.org
    #+end_src
-
-   And visualized in a web browser:
 
    #+begin_src bash
    open daylio.html
    #+end_src
+
+  #+CAPTION: Daylio export as HTML page
+  [[file:resources/daylio_html.png]]
 
 ** License
    :PROPERTIES:
