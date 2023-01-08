@@ -2,7 +2,7 @@
   :description "A library and CLI to convert Daylio CSV exports to Org Mode files."
   :url "https://github.com/mpereira/daylio-csv-to-org"
   :license {:name "MIT"
-            :url  "https://github.com/mpereira/daylio-csv-to-org/README.org#license"}
+            :url  "https://github.com/mpereira/daylio-csv-to-org/blob/master/README.org#license"}
   :dependencies [[org.clojure/data.csv "1.0.1"]
                  [clojure.java-time "0.3.3"]
                  [commons-io/commons-io "2.11.0"]
