@@ -1,0 +1,56 @@
+* daylio-csv-to-org
+  :PROPERTIES:
+  :CUSTOM_ID: daylio-csv-to-org
+  :END:
+
+  A library and CLI to convert [[https://daylio.net/][Daylio]] [[https://faq.daylio.net/article/29-what-is-csv-and-how-it-looks#:~:text=To%20export%20CSV%20just%20go,the%20app%20of%20your%20choice][CSV exports]] to Org Mode files.
+
+** Usage
+   :PROPERTIES:
+   :CUSTOM_ID: usage
+   :END:
+
+   #+begin_src text
+   $ lein run -- --help
+     Short  Long option                    Default  Description
+            --content-max-line-length      78
+            --heading-max-length           60
+            --heading-timestamp-enabled    true
+            --heading-timestamp-show-time  false
+     -h     --help                                  Display usage summary and exit
+     -i     --daylio-csv-input                      Path to a Daylio CSV export file
+     -o     --org-output                            Path to the resulting Org file
+   #+end_src
+
+   #+begin_src bash
+   lein run \
+        --daylio-csv-input "/Users/jdoe/daylio_export_2023_01_01.csv" \
+        --org-output "/Users/jdoe/org/daylio.org"
+   #+end_src
+
+** License
+   :PROPERTIES:
+   :CUSTOM_ID: license
+   :END:
+
+   #+begin_src text
+   The MIT License (MIT)
+   Copyright © 2023 Murilo Pereira <murilo@murilopereira.com>
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy of
+   this software and associated documentation files (the “Software”), to deal in
+   the Software without restriction, including without limitation the rights to
+   use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+   the Software, and to permit persons to whom the Software is furnished to do so,
+   subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+   FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+   COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+   IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+   #+end_src
