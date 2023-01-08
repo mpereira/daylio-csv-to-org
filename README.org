@@ -3,12 +3,15 @@
   :CUSTOM_ID: daylio-csv-to-org
   :END:
 
-  A library and CLI to convert [[https://daylio.net/][Daylio]] [[https://faq.daylio.net/article/29-what-is-csv-and-how-it-looks#:~:text=To%20export%20CSV%20just%20go,the%20app%20of%20your%20choice][CSV exports]] to Org Mode files.
+  A library and CLI to convert [[https://daylio.net/][Daylio]] [[https://faq.daylio.net/article/29-what-is-csv-and-how-it-looks#:~:text=To%20export%20CSV%20just%20go,the%20app%20of%20your%20choice][CSV exports]] to [[https://orgmode.org/][Org Mode]] files.
 
 ** Usage
    :PROPERTIES:
    :CUSTOM_ID: usage
    :END:
+
+   For now =daylio-csv-to-org= requires Java and Leiningen to run. If others
+   manifest interest I may publish static binaries for convenience.
 
    #+begin_src text
    $ lein run -- --help
@@ -22,10 +25,31 @@
      -o     --org-output                            Path to the resulting Org file
    #+end_src
 
+   A command like the one below would convert the
+   =/Users/jdoe/daylio_export_2023_01_01.csv= Daylio CSV export into a
+   =/Users/jdoe/org/daylio.org= Org file.
+
    #+begin_src bash
    lein run \
         --daylio-csv-input "/Users/jdoe/daylio_export_2023_01_01.csv" \
         --org-output "/Users/jdoe/org/daylio.org"
+   #+end_src
+
+   Using [[https://pandoc.org/][Pandoc]], the Org file could then be converted to many other formats,
+   like HTML:
+
+   #+begin_src bash
+   pandoc \
+     -f org \
+     -t html \
+     -o daylio.html \
+     "/Users/jdoe/org/daylio.org"
+   #+end_src
+
+   And visualized in a web browser:
+
+   #+begin_src bash
+   open daylio.html
    #+end_src
 
 ** License
